@@ -1,0 +1,15 @@
+{
+    "name": "jc/jc-markup-suite",
+    "autoload": {
+        "psr-4": {
+            "JC\\JcMarkupSuite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jani",
+            "email": "admin@peliarvostelut.net"
+        }
+    ],
+    "require": {}
+}
