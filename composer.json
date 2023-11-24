@@ -2,7 +2,7 @@
     "name": "jc/jc-markup-suite",
     "autoload": {
         "psr-4": {
-            "JC\\JcMarkupSuite\\": "src/"
+            "JcMarkupSuite\\": "src/"
         }
     },
     "authors": [
