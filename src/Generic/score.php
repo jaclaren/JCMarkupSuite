@@ -2,7 +2,9 @@
 
 namespace JCMarkupSuite\Generic;
 
-class Score
+use JCMarkupSuite\Interfaces\IScore;
+
+class Score implements IScore
 {
     private $scoreValue;
 

@@ -3,6 +3,7 @@
 namespace JCMarkupSuite\Preview;
 
 use JCMarkupSuite\Generic\Score;
+use JCMarkupSuite\Interfaces\IScore;
 
 class ItemDefault
 {
@@ -29,21 +30,41 @@ class ItemDefault
         return ob_get_clean();
     }
 
-    public static function renderContentWithScore(Score $score, $title = '', $excerpt = '')
+    /**
+     * Renders content details.
+     */
+
+    public static function renderContentDetails($title = '', $metas = [])
     {
         ob_start();
     ?>
-        <div class="preview-list__item__content">
-            <h3 class="preview-list__item__content__title">
-                <?= $title; ?>
-            </h3>
-            <p class="preview-list__item__content__excerpt">
-                <?= $excerpt; ?>
+        <h3 class="preview-list__item__content__title">
+            <?= $title; ?>
+        </h3>
+        <?php if (count($metas) > 0) : ?>
+            <p class="preview-list__item__content__metas">
+                Metas
             </p>
-            <?= $score->render(); ?>
+        <?php endif; ?>
+
+        <?php return ob_get_clean(); ?>
+    <?php
+    }
+
+    public static function renderContentWithScore(IScore $score, $title = '', $excerpt = '')
+    {
+        ob_start();
+    ?>
+        <div class="preview-list__item__content flex xs-flex-h">
+            <div class="preview-list__content__col">
+                <?= $score->render(); ?>
+            </div>
+            <div class="preview-list__content__col">
+                <?= self::renderContentDetails($title, []); ?>
+            </div>
         </div>
 
-        <?php
+    <?php
 
         return ob_get_clean();
     }
@@ -56,7 +77,7 @@ class ItemDefault
      * 
      */
 
-    public static function renderImage($alt = '',$image = '')
+    public static function renderImage($alt = '', $image = '')
     {
         ob_start();
     ?>
@@ -64,7 +85,7 @@ class ItemDefault
             <img src="<?= $image; ?>" alt="<?= $alt; ?>">
         </div>
 
-<?php
+    <?php
         return ob_get_clean();
     }
 
@@ -82,7 +103,7 @@ class ItemDefault
     {
         ob_start();
 
-?>
+    ?>
         <div class="preview-list__item__content">
             <h3 class="preview-list__item__content__title">
                 <?= $title; ?>
@@ -93,5 +114,5 @@ class ItemDefault
         </div>
 <?php
         return ob_get_clean();
-    }    
+    }
 }
