@@ -76,7 +76,7 @@ class ItemPartContent
     public function renderMetaRows()
     {
     ?>
-        <div class="preview-list__item__content__col">
+        <div class="preview-item__metarow">
             <?php foreach ($this->metaRows as $metaRow) : ?>
                 <?= $metaRow->render(); ?>
             <?php endforeach; ?>
@@ -114,7 +114,7 @@ class ItemPartContent
     public function generateHTML()
     {
     ?>
-        <div class="preview-list__item__content">
+        <div class="flex flex-h preview-list__item__content">
             <?php if ($this->score) : ?>
                 <?= $this->renderSidebar($this->score); ?>
             <?php endif; ?>

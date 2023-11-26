@@ -21,11 +21,10 @@ class ItemPartMetaRow
     {
         ob_start();
     ?>
-        <div class="preview-list__item__meta-row">
-            <div class="preview-list__item__meta-row__icon">
-                <?= $this->icon; ?>
+        <div class="preview-item__metarow__col">
+            <div class="preview-item__meta-row__icon <?= $this->icon; ?>">                
             </div>
-            <div class="preview-list__item__meta-row__value">
+            <div class="preview-item__meta-row__value">
                 <?= $this->value; ?>
             </div>
         </div>
