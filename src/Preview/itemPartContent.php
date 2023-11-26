@@ -56,30 +56,70 @@ class ItemPartContent
         $this->metaRows[] = $metaRow;
     }
 
-    public function generateHTML()
+    /**
+     * Function that renders a sidebar
+     */
+
+    public static function renderSidebar(?object $content)
     {
 ?>
+        <div class="preview-list__item__content__col">
+            <?= $content->render(); ?>
+        </div>
+    <?php
+    }
+
+    /** 
+     * Renders meta rows if available
+     */
+
+    public function renderMetaRows()
+    {
+    ?>
+        <div class="preview-list__item__content__col">
+            <?php foreach ($this->metaRows as $metaRow) : ?>
+                <?= $metaRow->render(); ?>
+            <?php endforeach; ?>
+        </div>
+    <?php
+    }
+
+    /**
+     * Function to render the main content area
+     * 
+     * @param ?object[] $content
+     */
+
+    public function renderMainContent()
+    {
+    ?>
+        <div class="preview-list__item__content__col preview-item__details">
+            <h3><?= $this->text; ?></h3>
+            <?php
+
+            if (!empty($this->metaRows) && count($this->metaRows) > 0) {
+                $this->renderMetaRows();
+            }
+            ?>
+        </div>
+    <?php
+    }
+
+    /**
+     * Function to render sidebar.     * 
+     * 
+     * 
+     */
+
+    public function generateHTML()
+    {
+    ?>
         <div class="preview-list__item__content">
             <?php if ($this->score) : ?>
-                <div class="preview-list__item__content__col preview-list__item__content__score">
-                    <?= $this->score->render(); ?>
-                </div>
+                <?= $this->renderSidebar($this->score); ?>
             <?php endif; ?>
-
-            <?php if (count($this->metaRows) > 0) : ?>
-                <div class="flex flex-v">
-                    <h3><?= $this->text; ?></h3>
-                    <div class="preview-list__item__content__col preview-list__item__content__metas">
-                        <?php foreach ($this->metaRows as $metaRow) : ?>
-                            <?= $metaRow->render(); ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php else : ?>
-                <div class="preview-list__item__content__col preview-list__item__content__text">
-                    <h3><?= $this->text; ?></h3>
-                </div>
-            <?php endif; ?>
+            
+            <?= $this->renderMainContent(); ?>
         </div>
 <?php
     }
