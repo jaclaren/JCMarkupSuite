@@ -14,6 +14,25 @@ class Score implements IScore
     }
 
     /**
+     * Function to determine score color css class
+     */
+
+    public function getScoreColorClass()
+    {
+        $scoreValue = $this->scoreValue;
+
+        if ($scoreValue >= 80) {
+            return 'score--green';
+        } elseif ($scoreValue >= 70) {
+            return 'score--yellow';
+        } elseif ($scoreValue < 60) {
+            return 'score--red';
+        } else {
+            return 'score--grey';
+        }
+    }
+
+    /**
      * Render the preview list
      * 
      * @param string $title 
@@ -26,7 +45,7 @@ class Score implements IScore
     {
         ob_start();
 ?>
-        <div class="preview-list__item xs:flex">
+        <div class="preview-list__item xs:flex score <?= $this->getScoreColorClass(); ?>">
             <?= $this->scoreValue; ?>
         </div>
     <?php
