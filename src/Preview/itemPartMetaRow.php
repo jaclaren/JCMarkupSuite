@@ -20,15 +20,17 @@ class ItemPartMetaRow
     public function render()
     {
         ob_start();
-    ?>
+?>
         <div class="preview-item__metarow__col">
-            <div class="preview-item__meta-row__icon <?= $this->icon; ?>">                
-            </div>
+            <?php if ($this->icon != '') : ?>
+                <div class="preview-item__meta-row__icon <?= $this->icon; ?>">
+                </div>
+            <?php endif; ?>
             <div class="preview-item__meta-row__value">
                 <?= $this->value; ?>
             </div>
         </div>
-    <?php
+<?php
         return ob_get_clean();
     }
 
