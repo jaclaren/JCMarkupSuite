@@ -46,7 +46,7 @@ class Score implements IScore
         ob_start();
 ?>
         <div class="preview-list__item xs:flex score <?= $this->getScoreColorClass(); ?>">
-            <?= $this->scoreValue; ?>
+            <?= $this->scoreValue; ?>%
         </div>
     <?php
         return ob_get_clean();
