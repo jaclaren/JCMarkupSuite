@@ -22,13 +22,7 @@ class ItemPartMetaRow
         ob_start();
 ?>
         <div class="preview-item__metarow__col">
-            <?php if ($this->icon != '') : ?>
-                <div class="preview-item__meta-row__icon <?= $this->icon; ?>">
-                </div>
-            <?php endif; ?>
-            <div class="preview-item__meta-row__value">
-                <?= $this->value; ?>
-            </div>
+            <?= \JCMarkupSuite\Generic\TextRenderer::renderTextWithIcon($this->value, $this->icon); ?>
         </div>
 <?php
         return ob_get_clean();

@@ -6,7 +6,7 @@ use JCMarkupSuite\Interfaces\IScore;
 
 class Score implements IScore
 {
-    private $scoreValue;
+    protected $scoreValue;
 
     public function __construct($scoreValue)
     {
@@ -23,9 +23,9 @@ class Score implements IScore
 
         if ($scoreValue >= 80) {
             return 'score--green';
-        } elseif ($scoreValue >= 70) {
+        } elseif ($scoreValue < 80) {
             return 'score--yellow';
-        } elseif ($scoreValue < 60) {
+        } elseif ($scoreValue <= 50) {
             return 'score--red';
         } else {
             return 'score--grey';
@@ -45,7 +45,7 @@ class Score implements IScore
     {
         ob_start();
 ?>
-        <div class="preview-list__item xs:flex score <?= $this->getScoreColorClass(); ?>">
+        <div class="preview-list__item xs:flex score score-text <?= $this->getScoreColorClass(); ?>">
             <?= $this->scoreValue; ?>%
         </div>
     <?php

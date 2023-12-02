@@ -2,7 +2,7 @@
 
 namespace JCMarkupSuite\Slider;
 
-class SliderBase extends SliderBase
+class SliderBase 
 {
     // root class
     public $rootClass = null;
@@ -42,7 +42,7 @@ class SliderBase extends SliderBase
         <?php foreach ($this->items as $index => $item) : ?>
             <li>
                 <!-- id is index -->
-                <div id="slide<?= $index; ?>"><?= $item; ?></div>
+                <div class="slide" id="slide<?= $index+1; ?>"><?= $item; ?></div>
             </li>
         <?php endforeach; ?>
     </ul>
